@@ -1,0 +1,1 @@
+[  {    "title": "Dashboard",    "link": "dashboard.html",    "icon": "fas fa-tachometer-alt"  },  {    "title": "Users",    "link": "users.html",    "icon": "fas fa-users"  },  {    "title": "Settings",    "link": "settings.html",    "icon": "fas fa-cog"  }]
