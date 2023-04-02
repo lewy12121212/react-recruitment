@@ -2,11 +2,11 @@ import React from 'react';
 import {Header} from '../components/Navbar'
 
 
-export const Gear = () => {
+export const Chart = () => {
     return(
-        <div className='gear'>
+        <div className='chart'>
             <Header />
-            <h2>Ustawienia.</h2>
+            <h2>Raporty.</h2>
         </div>
     );
 }

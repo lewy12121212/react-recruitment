@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Dokumenty",
+        "url": "/dokumenty",
+        "icon": "AiOutlineFile"
+    },
+    {
+        "title": "Raporty",
+        "url": "/raporty",
+        "icon": "BiBarChartSquare"
+    },
+    {
+        "title": "Kalendarz",
+        "url": "/kalendarz",
+        "icon": "AiOutlineCalendar"
+    },
+    {
+        "title": "Ustawienia",
+        "url": "/ustawienia",
+        "icon": "BsGear"
+    }
+]

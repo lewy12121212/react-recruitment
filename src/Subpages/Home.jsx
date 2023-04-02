@@ -1,9 +1,12 @@
 import React from 'react';
+import {Header} from '../components/Navbar'
+
 
 export const Home = () => {
     return(
-        <div>
-            <h1>Strona Główna.</h1>
+        <div className='home'>
+            <Header />
+            <h2>Strona Główna</h2>
         </div>
     );
 }

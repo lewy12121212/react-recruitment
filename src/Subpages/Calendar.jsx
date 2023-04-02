@@ -1,9 +1,12 @@
 import React from 'react';
+import {Header} from '../components/Navbar'
+
 
 export const Calendar = () => {
     return(
-        <div>
-            <h1>Kalendarz.</h1>
+        <div className='Calendar'>
+            <Header />
+            <h2>Kalendarz.</h2>
         </div>
     );
 }

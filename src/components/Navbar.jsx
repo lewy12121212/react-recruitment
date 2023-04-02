@@ -1,97 +1,62 @@
-import React, { useState, useEfect } from 'react';
-import { NavLink } from 'react-router-dom';
-import { ReactComponent as MenuIcon } from '../Images/Menu.svg';
-import { ReactComponent as Logo } from '../Images/Logo.svg';
-import { ReactComponent as FileIcon } from '../Images/File.svg';
-import { ReactComponent as ChartIcon } from '../Images/Chart.svg';
-import { ReactComponent as CalendarIcon } from '../Images/Calendar.svg';
-import { ReactComponent as GearIcon } from '../Images/Gear.svg';
+import '../styles/Header.css';
+import React, {useState} from 'react';
+import {HiBars4} from 'react-icons/hi2';
+import { AiOutlineFile, AiOutlineCalendar} from "react-icons/ai";
+import { BsGear} from "react-icons/bs";
+import { BiBarChartSquare } from "react-icons/bi";
+import {Link} from 'react-router-dom';
+import {App} from '../App';
 
+export const Header = () => {
 
-export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const [active, setActive] = useState (false);
 
- const handleClick = () => {
-  const data = ['Home', 'Gear', 'Files', 'Charts', 'Calendar' ]
-  setMenuItems(data);
-}
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  useEfect (()=> {
-    fetch('/menu.json')
-    .then ((response) => response.json()
-    .then ((data) => {
-      setMenuItems (data);
-    }))
-    
-  const menuItems = [
-    { path: '/', title: 'Pliki', icon: <FileIcon /> },
-    { path: '/', title: 'Wykresy', icon: <ChartIcon /> },
-    { path: '/', title: 'Kalendarz', icon: <CalendarIcon /> },
-    { path: '/', title: 'Ustawienia', icon: <GearIcon /> },
-  ];
-
-  } )
-  return (
-    <nav className='navbar'>
-      <div className='navbar-header'>
-        <Logo className='navbar-logo' />
-        <h1 style={{
-         display: isOpen || window.innerWidth > 480 ?  'block' :  'none',
-         }} className='Logo'>
-         <img src="path/to/logo.png" alt="Logo" style={{height: "35px", marginRight: "10px"}} />
-         </h1>
-        <button className='navbar-toggle' onClick={handleClick}>
-          <MenuIcon className='navbar-menu-icon' />
-        </button>
-      </div>
-      <menu className={`navbar-menu ${isOpen ? 'is-open' : ''}`}>
-        {menuItems.map((item, index) => (
-          <li className='navbar-menu-item' key={index}>
-            <NavLink
-              className='navbar-menu-link'
-              to={item.path}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <div className='navbar-menu-icon'>{item.icon}</div>
-              <div className='navbar-menu-title'>{item.title}</div>
-            </NavLink>
-          </li>
-        ))}
-      </menu>
-    </nav>
-  );
+const activateNav = () => {
+    setActive(!active)
 };
 
-const menu = document.querySelector('.menu');
+useEffect(() => {
+    fetch('../public/menuData.json')
+      .then((response) => response.json())
+      .then((data) => setMenuData(data));
+  }, []);
 
-fetch ('menu.json')
-.then (response => response.json())
-.then (data => {
-  data.forEach(item => {
-    const li = document.createElement  ('li');
-    const a = document.createElement('a');
-    const icon = document.createElement ('i');
 
-    icon.className =item.icon;
-    a.href = item.link;
-    a.target = '_blank';
-    a.textContent = item.title; 
+return(
 
-    a.prepend (icon);
-    li.append (a);
-    menu.append(li);
-  })
-})
+ <div className={active ? 'header' : 'header-mobile'}>
 
-const menuToggle = document.querySelector('.menu-toggle');
-if (menuToggle !== null){
-menuToggle.addEventListener('click', () => {
-  document.querySelector('nav').classList.toggle('show');
-  
-})
+    <div className='menu-icon' onClick={activateNav}>
+    
+    {!active ? <HiBars4 className='menu'/>  : <aiOutlineClose className='close-icon'/>}
+
+    </div>
+
+<nav>
+    <ul className={active ? 'ul-item'  : 'ul-item oicon'}>
+        <li>
+         <AiOutlineFile className='icon'/>
+         <Link to ="File">Dokumenty</Link>
+        </li>
+
+         <li>
+         <BiBarChartSquare className='icon chart'/>
+         <Link to ="Charts">Raporty</Link>
+        </li>
+
+         <li>
+        <AiOutlineCalendar className='icon'/>
+         <Link to ="Calendar">Kalendarz</Link>
+        </li>
+
+        <li>
+        <BsGear className='icon'/>
+        <Link to ="Gear">Ustawienia</Link>
+        </li>
+
+        </ul>
+        </nav>
+        </div>
+    
+    )
 }
